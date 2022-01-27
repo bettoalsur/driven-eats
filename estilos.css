@@ -10,12 +10,16 @@ header{
     top: 0px;
     left: 0px;
     right: 0px;
+
+    z-index: 1;
 }
 
 .conteudo {
     width: 100vw;
     height: auto;
     margin-top: calc(92px + 31px);
+
+    z-index: 2;
 }
 
 section {
@@ -84,8 +88,8 @@ h3 {
 }
 
 .opcao p {
-    margin-left: 14px;
-    margin-right: 14px;
+    margin-left: calc( 14px - 4px);;
+    margin-right: calc( 14px - 4px);;
 }
 
 .nome-produto{ 
@@ -164,6 +168,12 @@ h3 {
     background-color: white;
 
     margin-right: 16px;
+
+    position: relative;
+
+    border: solid 4px #32B72F;
+    /* border: solid 4px white; */
+    box-sizing: border-box;
 }
 
 .opcao:first-child {
@@ -180,11 +190,20 @@ h3 {
     border-radius: 4px;
 
     margin-top: 18px;
-    margin-left: 14px;
-    margin-right: 14px;
+
+    margin-left: calc( 14px - 4px);
+    margin-right: calc( 14px - 4px);
 
     object-fit: cover;
     object-position: center;
+}
+
+.opcao ion-icon {
+    color: #32B72F;
+    font-size: 15.44px;
+    position: absolute;
+    right: 10px;
+    bottom: 14px;
 }
 
 /* Footer (botao) */
