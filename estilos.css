@@ -2,15 +2,26 @@ body {
     background-color: #e5e5e5;
 }
 
-.topo{
+header{
     background-color: #CF2B2B;
     width: 100vw;
     height: 92px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.conteudo {
+    width: 100vw;
+    height: auto;
+    margin-top: calc(92px + 31px);
 }
 
 section {
-    width: 100vw;
+    width: 100%;
     height: auto;
+    margin-bottom: 27px;
 }
 
 /* TEXTOS ZONE */
@@ -20,20 +31,19 @@ h1 {
     font-size: 44px;
     font-style: normal;
     font-weight: 400;
-    /* line-height: 55px; */
+    line-height: 55px;
     letter-spacing: -0.012em;
     text-align: left;
 
     color: white;
 
-    /* Line-height: 55px 100%; */
     box-Align: Left;
     Vertical-align: Top;
     Letter-spacing: -1.2%;
 
     margin-left: 21px;
     margin-top: 8px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 h2 {
@@ -41,15 +51,14 @@ h2 {
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    /* line-height: 21px; */
     letter-spacing: 0em;
     text-align: left;
 
     color: white;
 
-    /* line-height: 21px ; */
     box-align: Left;
     vertical-align: Top;
+    line-height: 10px;
 
     margin-left: 21px;
 }
@@ -74,12 +83,12 @@ h3 {
     margin-bottom: 17px;
 }
 
-p {
+.opcao p {
     margin-left: 14px;
     margin-right: 14px;
 }
 
-.opcao p:nth-child(2){ /* Nome do produto */
+.nome-produto{ 
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
@@ -99,7 +108,7 @@ p {
 
 }
 
-.opcao p:nth-child(3){ /* Descricao do produto */
+.descricao-produto { 
     font-family: Roboto;
     font-size: 15px;
     font-style: normal;
@@ -118,7 +127,7 @@ p {
 
 }
 
-.opcao p:nth-child(4){ /* Preco do produto */
+.preco-produto {
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
@@ -134,18 +143,12 @@ p {
     vertical-align: Top;
 
     margin-bottom: 13px;
-
 }
 
-/*  */
-
-section {
-    margin-top: 27px;
-}
-
+/* sobre as opcoes */
 
 .opcoes {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -157,17 +160,18 @@ section {
 
 .opcao {
     width: 172px;
-    /* height: 216px; */
     border-radius: 9px;
     background-color: white;
 
     margin-right: 16px;
-
-
 }
 
 .opcao:first-child {
     margin-left: 19px;
+}
+
+.opcao:last-child {
+    margin-right: 19px;
 }
 
 .opcao img {
@@ -175,21 +179,57 @@ section {
     height: 87px;
     border-radius: 4px;
 
+    margin-top: 18px;
     margin-left: 14px;
     margin-right: 14px;
-    margin-top: 18px;
+
+    object-fit: cover;
+    object-position: center;
 }
 
+/* Footer (botao) */
 
-/* Fixar a barra superior */
+footer {
+    width: 100vw;
+    height: 92px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
 
-.topo {
     position: fixed;
-    top: 0;
-    right: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .conteudo {
-    margin-top: calc(92px + 31px);
+    margin-bottom: calc( 92px + 27px);
+}
+
+.botao {
+    background-color: gray;
+    width: calc( 100% - 50px);
+    height: calc( 92px - 30px);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao p {
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0.018em;
+    text-align: center;
+
+    color: white;
+
+    box-Align: Center;
+    Vertical-align: Top;
+    Letter-spacing: 1.8%;
 }
