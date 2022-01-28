@@ -11,41 +11,41 @@ window.onclick = function (e) {
 
     if (elemento.className == "opcao") {
         customizeSelection(elemento);
-        selectedCategory(elemento);
-        activeButton();
+        selectCategory(elemento);
+        activateButton();
     } else if (elemento.parentNode.className == "opcao") {
         customizeSelection(elemento.parentNode);
-        selectedCategory(elemento.parentNode);
-        activeButton();
-    } else if (elemento.className == "botao") {
-        pressButton();
-    } else if (elemento.parentNode.className == "botao") {
+        selectCategory(elemento.parentNode);
+        activateButton();
+    } else if (elemento.className == "botao" || elemento.parentNode.className == "botao") {
         pressButton();
     }
     
-
 } 
 
 // customizar selecao
 
 function customizeSelection(elemento) {
 
-    var pai = elemento.parentNode;
-    var todos = pai.children;
+    var irmaos = elemento.parentNode.children;
 
-    for (let i = 0 ; i < todos.length ; i++)
+    for (let i = 0 ; i < irmaos.length ; i++)
     {
-        todos[i].style.borderColor = "white";
-        todos[i].querySelector("ion-icon").style.display = "none";
+        if (irmaos[i] != elemento){
+            irmaos[i].style.borderColor = "white";
+            irmaos[i].querySelector("ion-icon").style.display = "none";
+        } else {
+            elemento.style.borderColor = "#32B72F";
+            elemento.querySelector("ion-icon").style.display = "inline";
+        }
     }
 
-    elemento.style.borderColor = "#32B72F";
-    elemento.querySelector("ion-icon").style.display = "inline";
 }
 
 // verificar selecao de categoria 
 
-function selectedCategory(elemento){
+function selectCategory(elemento){
+
     var pai = elemento.parentNode;
 
     if (pai.id == "prato"){
@@ -60,7 +60,7 @@ function selectedCategory(elemento){
 
 // verificar ativacao do botao
 
-function activeButton() {
+function activateButton() {
     if (prato && bebida && sobremesa) {
         document.querySelector(".botao").style.backgroundColor = "#32B72F";
         document.querySelector(".botao").innerHTML = "<p>Fechar pedido</p>";
@@ -71,7 +71,7 @@ function activeButton() {
 
 function pressButton() {
     if (prato && bebida && sobremesa) {
-        document.querySelector(".botao").style.backgroundColor = "pink";
+        document.querySelector(".dimmer").style.display = "block";
     }
 }
 
