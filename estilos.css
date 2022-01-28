@@ -171,8 +171,8 @@ h3 {
 
     position: relative;
 
-    border: solid 4px #32B72F;
-    /* border: solid 4px white; */
+    border: solid 4px white;
+
     box-sizing: border-box;
 }
 
@@ -204,6 +204,7 @@ h3 {
     position: absolute;
     right: 10px;
     bottom: 14px;
+    display: none;
 }
 
 /* Footer (botao) */
