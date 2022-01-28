@@ -2,6 +2,7 @@
 var prato = new produto();
 var bebida = new produto();
 var sobremesa = new produto();
+var mensagem = "";
 
 // elemento clicado e funcoes
 
@@ -21,6 +22,8 @@ window.onclick = function (e) {
         pressButton();
     } else if (elemento.className == "abortar-pedido") {
         cancelOrder();
+    } else if (elemento.className == "enviar-pedido") {
+        sendOrder();
     }
     
 } 
@@ -85,19 +88,19 @@ function pressButton() {
         document.querySelector(".confirmar-pedido").classList.add("mostrar");
 
         var VT = 0.0; // Valor total
-        var val = [];
+        var vals = [];
 
-        var aux = prato.valor.split(' '); val[0] = aux[1];
-        var aux = bebida.valor.split(' '); val[1] = aux[1];
-        var aux = sobremesa.valor.split(' '); val[2] = aux[1];
+        var aux = prato.valor.split(' '); vals[0] = aux[1];
+        var aux = bebida.valor.split(' '); vals[1] = aux[1];
+        var aux = sobremesa.valor.split(' '); vals[2] = aux[1];
 
         var m_vals = "";
 
         for (let i = 0 ; i < 3 ; i ++)
         {
-            m_vals += ("<p>"+val[i]+"</p>");
+            m_vals += ("<p>"+vals[i]+"</p>");
 
-            var aux = val[i].split(',');
+            var aux = vals[i].split(',');
             var aux2 = parseFloat( aux[0] + aux[1] )/100;
             VT += aux2;
         }
@@ -109,6 +112,12 @@ function pressButton() {
         document.querySelector(".produtos").innerHTML = "<p>"+prato.nome+"</p><p>"+bebida.nome+"</p><p>"+sobremesa.nome+"</p><p>TOTAL</p>";
         document.querySelector(".valores").innerHTML = m_vals;
 
+        mensagem = "Olá, gostaria de fazer o pedido:\n";
+        mensagem += ("- Prato: "+ prato.nome + "\n");
+        mensagem += ("- Bebida: "+ bebida.nome + "\n");
+        mensagem += ("- Sobremesa: "+ sobremesa.nome + "\n");
+        mensagem += ( "Total: R$ "+VT[0]+"."+VT[1] );
+
     }
 }
 
@@ -118,6 +127,21 @@ function cancelOrder() {
     document.querySelector(".dimmer").style.display = "none";
     document.querySelector(".confirmar-pedido").classList.remove("mostrar");
     document.querySelector(".confirmar-pedido").classList.add("ocultar");
+}
+
+// enviar pedido
+
+function sendOrder() {
+    document.querySelector(".dimmer").style.display = "none";
+    document.querySelector(".confirmar-pedido").classList.remove("mostrar");
+    document.querySelector(".confirmar-pedido").classList.add("ocultar");
+
+    var wapMes = encodeURIComponent(mensagem);
+
+    var prep = "https://wa.me/+5511994253957?text=";
+    window.open(prep + wapMes);
+    // console.log(wapMes);
+    // alert(mensagem);
 }
 
 
