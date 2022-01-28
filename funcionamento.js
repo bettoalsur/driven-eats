@@ -3,6 +3,8 @@ var prato = new produto();
 var bebida = new produto();
 var sobremesa = new produto();
 var mensagem = "";
+var nome;
+var endereco;
 
 // elemento clicado e funcoes
 
@@ -38,9 +40,11 @@ function customizeSelection(elemento) {
     {
         if (irmaos[i] != elemento){
             irmaos[i].style.borderColor = "white";
+            irmaos[i].style.filter = "none";
             irmaos[i].querySelector("ion-icon").style.display = "none";
         } else {
             elemento.style.borderColor = "#32B72F";
+            elemento.style.filter = "drop-shadow(0px 1px 2px rgb(75, 75, 75))";
             elemento.querySelector("ion-icon").style.display = "inline";
         }
     }
@@ -132,15 +136,28 @@ function cancelOrder() {
 // enviar pedido
 
 function sendOrder() {
+
+    while (nome==null){
+        nome = prompt("Por favor, digite seu nome.")
+    }
+    
+    while (endereco==null){
+        endereco = prompt("agora, seu endereço.")
+    }
+
     document.querySelector(".dimmer").style.display = "none";
     document.querySelector(".confirmar-pedido").classList.remove("mostrar");
     document.querySelector(".confirmar-pedido").classList.add("ocultar");
+
+    mensagem += ("\n\n");
+    mensagem += ("Nome: "+nome +"\n");
+    mensagem += ("Endereço: "+endereco);
 
     var wapMes = encodeURIComponent(mensagem);
 
     var prep = "https://wa.me/+5511994253957?text=";
     window.open(prep + wapMes);
-    // console.log(wapMes);
+    // console.log(mensagem);
     // alert(mensagem);
 }
 
