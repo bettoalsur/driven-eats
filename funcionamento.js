@@ -1,7 +1,7 @@
 
-var prato = false;
-var bebida = false;
-var sobremesa = false;
+var prato = new produto();
+var bebida = new produto();
+var sobremesa = new produto();
 
 // elemento clicado e funcoes
 
@@ -49,13 +49,20 @@ function customizeSelection(elemento) {
 function selectCategory(elemento){
 
     var pai = elemento.parentNode;
+    var info = elemento.children;
 
     if (pai.id == "prato"){
-        prato = true;
+        prato.estado = true;
+        prato.nome = info[1].innerHTML;
+        prato.valor = info[3].innerHTML;
     } else if (pai.id == "bebida"){
-        bebida = true;
+        bebida.estado = true;
+        bebida.nome = info[1].innerHTML;
+        bebida.valor = info[3].innerHTML;
     } else if (pai.id == "sobremesa"){
-        sobremesa = true;
+        sobremesa.estado = true;
+        sobremesa.nome = info[1].innerHTML;
+        sobremesa.valor = info[3].innerHTML;
     }
     
 }
@@ -63,7 +70,7 @@ function selectCategory(elemento){
 // verificar ativacao do botao
 
 function activateButton() {
-    if (prato && bebida && sobremesa) {
+    if (prato.estado && bebida.estado && sobremesa.estado) {
         document.querySelector(".botao").style.backgroundColor = "#32B72F";
         document.querySelector(".botao").innerHTML = "<p>Fechar pedido</p>";
     }
@@ -72,9 +79,36 @@ function activateButton() {
 // gestionar pressao do botao
 
 function pressButton() {
-    if (prato && bebida && sobremesa) {
+    if (prato.estado && bebida.estado && sobremesa.estado) {
         document.querySelector(".dimmer").style.display = "block";
+        document.querySelector(".confirmar-pedido").classList.remove("ocultar");
         document.querySelector(".confirmar-pedido").classList.add("mostrar");
+
+        var VT = 0.0; // Valor total
+        var val = [];
+
+        var aux = prato.valor.split(' '); val[0] = aux[1];
+        var aux = bebida.valor.split(' '); val[1] = aux[1];
+        var aux = sobremesa.valor.split(' '); val[2] = aux[1];
+
+        var m_vals = "";
+
+        for (let i = 0 ; i < 3 ; i ++)
+        {
+            m_vals += ("<p>"+val[i]+"</p>");
+
+            var aux = val[i].split(',');
+            var aux2 = parseFloat( aux[0] + aux[1] )/100;
+            VT += aux2;
+        }
+
+        VT = VT.toFixed(2).split('.');
+
+        m_vals += "<p>R$ "+VT[0]+","+VT[1]+"</p>";
+
+        document.querySelector(".produtos").innerHTML = "<p>"+prato.nome+"</p><p>"+bebida.nome+"</p><p>"+sobremesa.nome+"</p><p>TOTAL</p>";
+        document.querySelector(".valores").innerHTML = m_vals;
+
     }
 }
 
@@ -82,7 +116,8 @@ function pressButton() {
 
 function cancelOrder() {
     document.querySelector(".dimmer").style.display = "none";
-        document.querySelector(".confirmar-pedido").classList.remove("mostrar");
+    document.querySelector(".confirmar-pedido").classList.remove("mostrar");
+    document.querySelector(".confirmar-pedido").classList.add("ocultar");
 }
 
 
