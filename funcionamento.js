@@ -19,6 +19,8 @@ window.onclick = function (e) {
         activateButton();
     } else if (elemento.className == "botao" || elemento.parentNode.className == "botao") {
         pressButton();
+    } else if (elemento.className == "abortar-pedido") {
+        cancelOrder();
     }
     
 } 
@@ -72,7 +74,15 @@ function activateButton() {
 function pressButton() {
     if (prato && bebida && sobremesa) {
         document.querySelector(".dimmer").style.display = "block";
+        document.querySelector(".confirmar-pedido").classList.add("mostrar");
     }
+}
+
+// abortar pedido
+
+function cancelOrder() {
+    document.querySelector(".dimmer").style.display = "none";
+        document.querySelector(".confirmar-pedido").classList.remove("mostrar");
 }
 
 
